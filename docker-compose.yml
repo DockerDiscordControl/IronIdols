@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  iron-idols-web:
+    build: .
+    container_name: iron-idols-dev
+    ports:
+      # External port mapping: 8333 (external) -> 5173 (internal/Vite)
+      - "8333:5173"
+    volumes:
+      # Bind mount for live-reload during development
+      - .:/app
+      # Keep node_modules in container for better performance
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    stdin_open: true
+    tty: true

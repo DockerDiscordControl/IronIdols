@@ -535,11 +535,9 @@ async function runSequence() {
     await wait(200)
   }
 
-  await wait(2000)
-
   if (skipToEnd) return
 
-  // Step 5: Display corrupted error code (in red)
+  // Step 5: Display corrupted error code immediately after dots (in red)
   const corruptedCode = generateCorruptedErrorCode()
   const corruptedLines = corruptedCode.split('\n')
 

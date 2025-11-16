@@ -468,7 +468,7 @@ async function runSequence() {
   await wait(100)
 
   // Scroll ERROR to top by adding empty lines (push boot lines off screen)
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 15; i++) {
     const emptyLine = document.createElement('div')
     emptyLine.innerHTML = '&nbsp;'
     bootContainer.appendChild(emptyLine)

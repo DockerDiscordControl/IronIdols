@@ -485,7 +485,7 @@ async function runSequence() {
   // ERROR is now at top - add red blinking cursor
   const errorCursor1 = document.createElement('span')
   errorCursor1.className = 'cursor cursor-red'
-  errorCursor1.textContent = '█'
+  errorCursor1.textContent = '_'
   errorLine1.appendChild(errorCursor1)
 
   // Wait 3 seconds with cursor blinking
@@ -505,7 +505,7 @@ async function runSequence() {
   // Add red blinking cursor after System corrupted
   const errorCursor2 = document.createElement('span')
   errorCursor2.className = 'cursor cursor-red'
-  errorCursor2.textContent = '█'
+  errorCursor2.textContent = '_'
   errorLine2.appendChild(errorCursor2)
 
   await wait(2000)

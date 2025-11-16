@@ -459,31 +459,46 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: ERROR in red (no screen clear, stays with boot messages)
+  // Step 4: Continue scrolling to push everything up, leaving ERROR at top
+  // Add many empty lines to push boot sequence completely off screen
+  for (let i = 0; i < 30; i++) {
+    const emptyLine = document.createElement('div')
+    emptyLine.innerHTML = '&nbsp;'
+    bootContainer.appendChild(emptyLine)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(20)
+  }
+
+  // Now add ERROR so it appears alone at the top
   const errorDiv = document.createElement('div')
   errorDiv.className = 'error-text'
   bootContainer.appendChild(errorDiv)
+  bootContainer.scrollTop = bootContainer.scrollHeight
 
-  // Neue Zeile, dann ERROR tippen
-  errorDiv.appendChild(document.createTextNode('\n'))
   await typeText(errorDiv, 'ERROR', 47)
 
-  // Red blinking cursor for 2 seconds
-  const redCursor1 = createCursor('cursor-red')
-  errorDiv.appendChild(redCursor1)
-  await wait(2000)
-  redCursor1.remove()
+  // Wait 3 seconds
+  await wait(3000)
+
+  if (skipToEnd) return
 
   // New line and type "System corrupted"
   errorDiv.appendChild(document.createTextNode('\n'))
   await typeText(errorDiv, 'System corrupted', 47)
+  bootContainer.scrollTop = bootContainer.scrollHeight
 
-  // New line and type "rebooting..."
+  // Wait 2 seconds
+  await wait(2000)
+
+  if (skipToEnd) return
+
+  // New line and type "rebooting..............."
   errorDiv.appendChild(document.createTextNode('\n'))
-  await typeText(errorDiv, 'rebooting...', 100)
+  await typeText(errorDiv, 'rebooting...............', 100)
+  bootContainer.scrollTop = bootContainer.scrollHeight
 
-  // Wait 1 second
-  await wait(1000)
+  // Wait 2 seconds
+  await wait(2000)
 
   if (skipToEnd) return
 

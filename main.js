@@ -474,12 +474,11 @@ async function runSequence() {
   bootContainer.scrollTop = bootContainer.scrollHeight
   await wait(100)
 
-  // Scroll ERROR to top by adding empty lines (push boot lines off screen)
-  for (let i = 0; i < 28; i++) {
-    const emptyLine = document.createElement('div')
-    emptyLine.innerHTML = '&nbsp;'
-    bootContainer.appendChild(emptyLine)
-    bootContainer.scrollTop = bootContainer.scrollHeight
+  // Scroll ERROR to top by removing lines from top one by one
+  // Keep removing until ERROR is at the top (only empty line and ERROR remain)
+  while (bootContainer.children.length > 2) {
+    if (skipToEnd) return
+    bootContainer.removeChild(bootContainer.firstChild)
     await wait(30)
   }
 
@@ -488,16 +487,11 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Clear empty lines and add System corrupted directly below ERROR
-  // We need to replace the empty line right after ERROR with "System corrupted"
-  // Remove last empty lines and add new content at the right position
+  // Add System corrupted directly below ERROR
   const errorLine2 = document.createElement('div')
   errorLine2.className = 'error-text'
   errorLine2.textContent = 'System corrupted'
-
-  // Insert after ERROR (before all the empty lines)
-  const errorIndex = Array.from(bootContainer.children).indexOf(errorLine1)
-  bootContainer.insertBefore(errorLine2, bootContainer.children[errorIndex + 1])
+  bootContainer.appendChild(errorLine2)
 
   await wait(2000)
 
@@ -507,7 +501,7 @@ async function runSequence() {
   const errorLine3 = document.createElement('div')
   errorLine3.className = 'error-text'
   errorLine3.textContent = 'rebooting...............'
-  bootContainer.insertBefore(errorLine3, bootContainer.children[errorIndex + 2])
+  bootContainer.appendChild(errorLine3)
 
   await wait(2000)
 

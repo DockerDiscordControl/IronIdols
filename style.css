@@ -59,11 +59,40 @@ body {
   color: #ff0000;
 }
 
-/* Rune text */
+/* Rune text - starts invisible for transition */
 .rune-text {
   color: #ffffff;
   font-size: 24px;
   letter-spacing: 2px;
+  opacity: 0;
+}
+
+/* Rune transition: materializing effect */
+.rune-enter {
+  animation: runeEnter 1.8s ease-out forwards;
+}
+
+@keyframes runeEnter {
+  0% {
+    opacity: 0;
+    letter-spacing: 18px;
+    filter: blur(8px);
+    transform: scale(1.04);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(2px);
+    transform: scale(1.0);
+  }
+  70% {
+    letter-spacing: 4px;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 2px;
+    filter: blur(0);
+  }
 }
 
 /* Iron Idols scaling text - 3x scale */

@@ -573,9 +573,9 @@ async function runSequence() {
   // Step 6: Rune takeover (typed)
   clearScreen(terminal)
 
-  // Create container for runes
+  // Create container for runes with materializing transition
   const runeContainer = document.createElement('div')
-  runeContainer.className = 'rune-text'
+  runeContainer.className = 'rune-text rune-enter'
   terminal.appendChild(runeContainer)
 
   // Multi-line runic text with first character in dark red

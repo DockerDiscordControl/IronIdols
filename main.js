@@ -459,44 +459,50 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: ERROR appears
+  // Step 4: Add ERROR line
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
   bootContainer.scrollTop = bootContainer.scrollHeight
+  await wait(100)
 
-  // Add empty lines to push ERROR to the top of viewport
-  for (let i = 0; i < 25; i++) {
+  // Scroll ERROR to top by adding many empty lines
+  for (let i = 0; i < 50; i++) {
     const emptyLine = document.createElement('div')
     emptyLine.innerHTML = '&nbsp;'
     bootContainer.appendChild(emptyLine)
     bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(30)
+    await wait(15)
   }
 
-  // Now ERROR is alone at the top - wait 5 seconds
+  // ERROR is now at top - wait 5 seconds
   await wait(5000)
 
   if (skipToEnd) return
 
-  // System corrupted appears below ERROR, displayed for 2 seconds
+  // Clear empty lines and add System corrupted directly below ERROR
+  // We need to replace the empty line right after ERROR with "System corrupted"
+  // Remove last empty lines and add new content at the right position
   const errorLine2 = document.createElement('div')
   errorLine2.className = 'error-text'
   errorLine2.textContent = 'System corrupted'
-  bootContainer.appendChild(errorLine2)
-  bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(2000) // 2 seconds
+
+  // Insert after ERROR (before all the empty lines)
+  const errorIndex = Array.from(bootContainer.children).indexOf(errorLine1)
+  bootContainer.insertBefore(errorLine2, bootContainer.children[errorIndex + 1])
+
+  await wait(2000)
 
   if (skipToEnd) return
 
-  // rebooting appears, displayed for 2 seconds
+  // Add rebooting directly below System corrupted
   const errorLine3 = document.createElement('div')
   errorLine3.className = 'error-text'
   errorLine3.textContent = 'rebooting...............'
-  bootContainer.appendChild(errorLine3)
-  bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(2000) // 2 seconds
+  bootContainer.insertBefore(errorLine3, bootContainer.children[errorIndex + 2])
+
+  await wait(2000)
 
   if (skipToEnd) return
 

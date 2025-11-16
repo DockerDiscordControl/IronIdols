@@ -477,7 +477,7 @@ async function runSequence() {
   while (bootContainer.children.length > 2) {
     if (skipToEnd) return
     bootContainer.removeChild(bootContainer.firstChild)
-    await wait(30)
+    await wait(15)
   }
 
   // ERROR is now at top - add red blinking cursor

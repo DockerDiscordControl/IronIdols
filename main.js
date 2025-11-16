@@ -467,13 +467,13 @@ async function runSequence() {
   bootContainer.scrollTop = bootContainer.scrollHeight
   await wait(100)
 
-  // Scroll ERROR to top by adding many empty lines
-  for (let i = 0; i < 50; i++) {
+  // Scroll ERROR to top by adding empty lines (just enough to push 2 boot lines up)
+  for (let i = 0; i < 3; i++) {
     const emptyLine = document.createElement('div')
     emptyLine.innerHTML = '&nbsp;'
     bootContainer.appendChild(emptyLine)
     bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(15)
+    await wait(50)
   }
 
   // ERROR is now at top - wait 5 seconds

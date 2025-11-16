@@ -471,9 +471,8 @@ async function runSequence() {
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
-  bootContainer.scrollTop = bootContainer.scrollHeight
 
-  // Scroll ERROR to top by removing lines from top one by one (no delay)
+  // Immediately start removing lines from top to scroll ERROR to top
   // Keep removing until ERROR is at the top (only empty line and ERROR remain)
   while (bootContainer.children.length > 2) {
     if (skipToEnd) return

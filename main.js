@@ -466,12 +466,23 @@ async function runSequence() {
   bootContainer.scrollTop = bootContainer.scrollHeight
   await wait(47)
 
-  // Add ERROR line
+  // Add ERROR line with red blinking cursor
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
   bootContainer.scrollTop = bootContainer.scrollHeight
+
+  // Add red blinking cursor after ERROR
+  const errorCursor1 = document.createElement('span')
+  errorCursor1.className = 'cursor cursor-red'
+  errorCursor1.textContent = '█'
+  errorLine1.appendChild(errorCursor1)
+
+  await wait(2000)
+
+  // Remove cursor
+  errorCursor1.remove()
   await wait(100)
 
   // Scroll ERROR to top by removing lines from top one by one
@@ -487,21 +498,46 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Add System corrupted directly below ERROR
+  // Add System corrupted directly below ERROR with red blinking cursor
   const errorLine2 = document.createElement('div')
   errorLine2.className = 'error-text'
   errorLine2.textContent = 'System corrupted'
   bootContainer.appendChild(errorLine2)
 
+  // Add red blinking cursor after System corrupted
+  const errorCursor2 = document.createElement('span')
+  errorCursor2.className = 'cursor cursor-red'
+  errorCursor2.textContent = '█'
+  errorLine2.appendChild(errorCursor2)
+
   await wait(2000)
+
+  // Remove cursor
+  errorCursor2.remove()
 
   if (skipToEnd) return
 
-  // Add rebooting directly below System corrupted
+  // Type "rebooting" with dots appearing slowly
   const errorLine3 = document.createElement('div')
   errorLine3.className = 'error-text'
-  errorLine3.textContent = 'rebooting...............'
   bootContainer.appendChild(errorLine3)
+
+  const rebootText = 'rebooting'
+  const dots = '...............'
+
+  // Type "rebooting" quickly
+  for (const char of rebootText) {
+    if (skipToEnd) return
+    errorLine3.textContent += char
+    await wait(50)
+  }
+
+  // Type dots slowly
+  for (const dot of dots) {
+    if (skipToEnd) return
+    errorLine3.textContent += dot
+    await wait(200)
+  }
 
   await wait(2000)
 

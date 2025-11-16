@@ -459,13 +459,24 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: ERROR appears and stays for 5 seconds
+  // Step 4: ERROR appears
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
   bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(5000) // 5 seconds
+
+  // Add empty lines to push ERROR to the top of viewport
+  for (let i = 0; i < 25; i++) {
+    const emptyLine = document.createElement('div')
+    emptyLine.innerHTML = '&nbsp;'
+    bootContainer.appendChild(emptyLine)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(30)
+  }
+
+  // Now ERROR is alone at the top - wait 5 seconds
+  await wait(5000)
 
   if (skipToEnd) return
 

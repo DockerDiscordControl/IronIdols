@@ -459,46 +459,71 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: Continue scrolling to push everything up, leaving ERROR at top
-  // Add many empty lines to push boot sequence completely off screen
-  for (let i = 0; i < 30; i++) {
+  // Step 4: Continue scrolling - ERROR and messages scroll up too
+  // Add ERROR line
+  const errorLine1 = document.createElement('div')
+  errorLine1.className = 'error-text'
+  bootContainer.appendChild(errorLine1)
+
+  // Type ERROR and keep scrolling
+  for (let i = 0; i < 'ERROR'.length; i++) {
+    errorLine1.textContent += 'ERROR'.charAt(i)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(47)
+  }
+
+  // Add empty lines to push ERROR up and wait 3 seconds
+  for (let i = 0; i < 3; i++) {
+    await wait(1000)
     const emptyLine = document.createElement('div')
     emptyLine.innerHTML = '&nbsp;'
     bootContainer.appendChild(emptyLine)
     bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(20)
   }
 
-  // Now add ERROR so it appears alone at the top
-  const errorDiv = document.createElement('div')
-  errorDiv.className = 'error-text'
-  bootContainer.appendChild(errorDiv)
-  bootContainer.scrollTop = bootContainer.scrollHeight
+  if (skipToEnd) return
 
-  await typeText(errorDiv, 'ERROR', 47)
+  // Add "System corrupted" line
+  const errorLine2 = document.createElement('div')
+  errorLine2.className = 'error-text'
+  bootContainer.appendChild(errorLine2)
 
-  // Wait 3 seconds
-  await wait(3000)
+  for (let i = 0; i < 'System corrupted'.length; i++) {
+    errorLine2.textContent += 'System corrupted'.charAt(i)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(47)
+  }
+
+  // Add empty lines to push "System corrupted" up and wait 2 seconds
+  for (let i = 0; i < 2; i++) {
+    await wait(1000)
+    const emptyLine = document.createElement('div')
+    emptyLine.innerHTML = '&nbsp;'
+    bootContainer.appendChild(emptyLine)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+  }
 
   if (skipToEnd) return
 
-  // New line and type "System corrupted"
-  errorDiv.appendChild(document.createTextNode('\n'))
-  await typeText(errorDiv, 'System corrupted', 47)
-  bootContainer.scrollTop = bootContainer.scrollHeight
+  // Add "rebooting..............." line
+  const errorLine3 = document.createElement('div')
+  errorLine3.className = 'error-text'
+  bootContainer.appendChild(errorLine3)
 
-  // Wait 2 seconds
-  await wait(2000)
+  for (let i = 0; i < 'rebooting...............'.length; i++) {
+    errorLine3.textContent += 'rebooting...............'.charAt(i)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(100)
+  }
 
-  if (skipToEnd) return
-
-  // New line and type "rebooting..............."
-  errorDiv.appendChild(document.createTextNode('\n'))
-  await typeText(errorDiv, 'rebooting...............', 100)
-  bootContainer.scrollTop = bootContainer.scrollHeight
-
-  // Wait 2 seconds
-  await wait(2000)
+  // Add empty lines to push "rebooting" up and wait 2 seconds
+  for (let i = 0; i < 2; i++) {
+    await wait(1000)
+    const emptyLine = document.createElement('div')
+    emptyLine.innerHTML = '&nbsp;'
+    bootContainer.appendChild(emptyLine)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+  }
 
   if (skipToEnd) return
 

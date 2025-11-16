@@ -459,27 +459,33 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: Add ERROR messages like normal boot lines
+  // Step 4: ERROR appears and stays for 5 seconds
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
   bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(47)
+  await wait(5000) // 5 seconds
 
+  if (skipToEnd) return
+
+  // System corrupted appears below ERROR, displayed for 2 seconds
   const errorLine2 = document.createElement('div')
   errorLine2.className = 'error-text'
   errorLine2.textContent = 'System corrupted'
   bootContainer.appendChild(errorLine2)
   bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(47)
+  await wait(2000) // 2 seconds
 
+  if (skipToEnd) return
+
+  // rebooting appears, displayed for 2 seconds
   const errorLine3 = document.createElement('div')
   errorLine3.className = 'error-text'
   errorLine3.textContent = 'rebooting...............'
   bootContainer.appendChild(errorLine3)
   bootContainer.scrollTop = bootContainer.scrollHeight
-  await wait(47)
+  await wait(2000) // 2 seconds
 
   if (skipToEnd) return
 

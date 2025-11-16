@@ -459,7 +459,14 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: Add ERROR line
+  // Step 4: Add empty line before ERROR
+  const emptyBeforeError = document.createElement('div')
+  emptyBeforeError.innerHTML = '&nbsp;'
+  bootContainer.appendChild(emptyBeforeError)
+  bootContainer.scrollTop = bootContainer.scrollHeight
+  await wait(47)
+
+  // Add ERROR line
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'

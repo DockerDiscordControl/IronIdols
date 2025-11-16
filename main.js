@@ -379,11 +379,11 @@ async function runSequence() {
     '[LOAD] Starting graphics subsystem...',
     '[OK] DRM driver loaded',
     '[OK] Framebuffer console ready',
-    '[LOAD] Loading Iron Idols core systems...',
+    '[LOAD] Loading core systems...',
     '[OK] Rust-dust memory integrity: 98.7%',
     '',
     '[LOAD] Final system initialization...',
-    '[OK] Iron Idols OS ready',
+    '[OK] System ready',
     '[OK] All systems nominal',
     '[BOOT] Launching primary interface...',
     '[OK] Interface loaded successfully'

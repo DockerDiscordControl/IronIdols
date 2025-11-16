@@ -466,23 +466,12 @@ async function runSequence() {
   bootContainer.scrollTop = bootContainer.scrollHeight
   await wait(47)
 
-  // Add ERROR line with red blinking cursor
+  // Add ERROR line (without cursor yet)
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
   errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
   bootContainer.scrollTop = bootContainer.scrollHeight
-
-  // Add red blinking cursor after ERROR
-  const errorCursor1 = document.createElement('span')
-  errorCursor1.className = 'cursor cursor-red'
-  errorCursor1.textContent = '█'
-  errorLine1.appendChild(errorCursor1)
-
-  await wait(2000)
-
-  // Remove cursor
-  errorCursor1.remove()
   await wait(100)
 
   // Scroll ERROR to top by removing lines from top one by one
@@ -493,8 +482,17 @@ async function runSequence() {
     await wait(30)
   }
 
-  // ERROR is now at top - wait 5 seconds
-  await wait(5000)
+  // ERROR is now at top - add red blinking cursor
+  const errorCursor1 = document.createElement('span')
+  errorCursor1.className = 'cursor cursor-red'
+  errorCursor1.textContent = '█'
+  errorLine1.appendChild(errorCursor1)
+
+  // Wait 3 seconds with cursor blinking
+  await wait(3000)
+
+  // Remove cursor
+  errorCursor1.remove()
 
   if (skipToEnd) return
 

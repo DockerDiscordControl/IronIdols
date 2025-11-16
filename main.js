@@ -513,12 +513,30 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 5: Display Skull ASCII (in white)
+  // Step 5: Display corrupted error code (in red)
+  const corruptedCode = generateCorruptedErrorCode()
+  const corruptedLines = corruptedCode.split('\n')
+
+  for (const corruptLine of corruptedLines) {
+    const line = document.createElement('div')
+    line.className = 'error-text'
+    line.textContent = corruptLine
+    line.style.whiteSpace = 'pre'
+    bootContainer.appendChild(line)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(20) // Fast display
+  }
+
+  await wait(1000)
+
+  if (skipToEnd) return
+
+  // Step 6: Display Skull ASCII (in red, same color as error)
   for (const skullLine of skullArt) {
     const line = document.createElement('div')
+    line.className = 'error-text' // Red like error code
     line.textContent = skullLine
     line.style.whiteSpace = 'pre'
-    line.style.color = '#ffffff' // White
     bootContainer.appendChild(line)
     bootContainer.scrollTop = bootContainer.scrollHeight
     await wait(30) // Fast display

@@ -651,6 +651,8 @@ This is not music. This is survival.`
   await typeText(loreDiv, loreText, 30)
   await wait(200)
 
+  if (skipToEnd) return
+
   // Step 8: Impressum / Contact (typed)
   const contactSection = document.createElement('div')
   contactSection.className = 'contact-section'

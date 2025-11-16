@@ -459,71 +459,27 @@ async function runSequence() {
 
   if (skipToEnd) return
 
-  // Step 4: Continue scrolling - ERROR and messages scroll up too
-  // Add ERROR line
+  // Step 4: Add ERROR messages like normal boot lines
   const errorLine1 = document.createElement('div')
   errorLine1.className = 'error-text'
+  errorLine1.textContent = 'ERROR'
   bootContainer.appendChild(errorLine1)
+  bootContainer.scrollTop = bootContainer.scrollHeight
+  await wait(47)
 
-  // Type ERROR and keep scrolling
-  for (let i = 0; i < 'ERROR'.length; i++) {
-    errorLine1.textContent += 'ERROR'.charAt(i)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(47)
-  }
-
-  // Add empty lines to push ERROR up and wait 3 seconds
-  for (let i = 0; i < 3; i++) {
-    await wait(1000)
-    const emptyLine = document.createElement('div')
-    emptyLine.innerHTML = '&nbsp;'
-    bootContainer.appendChild(emptyLine)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-  }
-
-  if (skipToEnd) return
-
-  // Add "System corrupted" line
   const errorLine2 = document.createElement('div')
   errorLine2.className = 'error-text'
+  errorLine2.textContent = 'System corrupted'
   bootContainer.appendChild(errorLine2)
+  bootContainer.scrollTop = bootContainer.scrollHeight
+  await wait(47)
 
-  for (let i = 0; i < 'System corrupted'.length; i++) {
-    errorLine2.textContent += 'System corrupted'.charAt(i)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(47)
-  }
-
-  // Add empty lines to push "System corrupted" up and wait 2 seconds
-  for (let i = 0; i < 2; i++) {
-    await wait(1000)
-    const emptyLine = document.createElement('div')
-    emptyLine.innerHTML = '&nbsp;'
-    bootContainer.appendChild(emptyLine)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-  }
-
-  if (skipToEnd) return
-
-  // Add "rebooting..............." line
   const errorLine3 = document.createElement('div')
   errorLine3.className = 'error-text'
+  errorLine3.textContent = 'rebooting...............'
   bootContainer.appendChild(errorLine3)
-
-  for (let i = 0; i < 'rebooting...............'.length; i++) {
-    errorLine3.textContent += 'rebooting...............'.charAt(i)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-    await wait(100)
-  }
-
-  // Add empty lines to push "rebooting" up and wait 2 seconds
-  for (let i = 0; i < 2; i++) {
-    await wait(1000)
-    const emptyLine = document.createElement('div')
-    emptyLine.innerHTML = '&nbsp;'
-    bootContainer.appendChild(emptyLine)
-    bootContainer.scrollTop = bootContainer.scrollHeight
-  }
+  bootContainer.scrollTop = bootContainer.scrollHeight
+  await wait(47)
 
   if (skipToEnd) return
 

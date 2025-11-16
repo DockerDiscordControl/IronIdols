@@ -478,17 +478,21 @@ async function runSequence() {
   errorDiv.appendChild(document.createTextNode('\n'))
   await typeText(errorDiv, 'System corrupted', 47)
 
+  // New line and type "rebooting..."
+  errorDiv.appendChild(document.createTextNode('\n'))
+  await typeText(errorDiv, 'rebooting...', 100)
+
   // Wait 1 second
   await wait(1000)
 
   if (skipToEnd) return
 
-  // Step 5: Display Skull ASCII
+  // Step 5: Display Skull ASCII (in white)
   for (const skullLine of skullArt) {
     const line = document.createElement('div')
     line.textContent = skullLine
     line.style.whiteSpace = 'pre'
-    line.className = 'error-text' // Keep it red
+    line.style.color = '#ffffff' // White
     bootContainer.appendChild(line)
     bootContainer.scrollTop = bootContainer.scrollHeight
     await wait(30) // Fast display

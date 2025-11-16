@@ -382,10 +382,14 @@ async function runSequence() {
     '[LOAD] Loading Iron Idols core systems...',
     '[OK] Rust-dust memory integrity: 98.7%',
     '',
-    // ASCII Skull Art Integration (Lines 71-130+)
-    '[SCAN] Detecting Iron Idols signature...',
-    '[LOAD] Decrypting skull matrix...',
-    '',
+    '[LOAD] Final system initialization...',
+    '[OK] Iron Idols OS ready',
+    '[OK] All systems nominal',
+    '[BOOT] Launching primary interface...',
+    '[OK] Interface loaded successfully'
+  ]
+
+  const skullArt = [
     '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
     '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+-.........-*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
     '@@@@@@@@@@@@@@@@@@@@@@@@@@@@*:..:+%@@@@@@@@@@@%+...:*@@@@@@@@@@@@@@@@@@@@@@@@@@',
@@ -437,15 +441,7 @@ async function runSequence() {
     '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:@@@@@@@@@@+*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
     '@@@@@@@@@@@@@@@@@@@@@@+++++**::%@@@+@@@@@@@@+@@@%:.-:.:+#@@@@@@@@@@@@@@@@@@@@@@',
     '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:@@@@@@@@@@@@@@:@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
-    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',
-    '',
-    '[OK] Skull matrix loaded',
-    '[LOAD] Final system initialization...',
-    '[OK] Iron Idols OS ready',
-    '[OK] All systems nominal',
-    '[BOOT] Launching primary interface...',
-    '[OK] Interface loaded successfully',
-    ''
+    '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
   ]
 
   // Display lines rapidly with auto-scroll (~127 lines in 6 seconds = ~47ms per line)
@@ -461,45 +457,48 @@ async function runSequence() {
     await wait(47) // ~47ms per line = ~6 seconds total
   }
 
-  // Wait 2 seconds after boot
-  await wait(2000)
-
   if (skipToEnd) return
 
-  // Step 4: System failure (typed with red cursor)
-  clearScreen(terminal)
-
+  // Step 4: ERROR in red (no screen clear, stays with boot messages)
   const errorDiv = document.createElement('div')
   errorDiv.className = 'error-text'
-  terminal.appendChild(errorDiv)
+  bootContainer.appendChild(errorDiv)
 
-  // Type "ERROR" at boot speed
+  // Neue Zeile, dann ERROR tippen
+  errorDiv.appendChild(document.createTextNode('\n'))
   await typeText(errorDiv, 'ERROR', 47)
 
-  // Red blinking cursor for 3 seconds
+  // Red blinking cursor for 2 seconds
   const redCursor1 = createCursor('cursor-red')
   errorDiv.appendChild(redCursor1)
-  await wait(3000)
+  await wait(2000)
   redCursor1.remove()
 
-  // New line and type "SYSTEM CORRUPTED"
+  // New line and type "System corrupted"
   errorDiv.appendChild(document.createTextNode('\n'))
-  await typeText(errorDiv, 'SYSTEM CORRUPTED', 47)
+  await typeText(errorDiv, 'System corrupted', 47)
 
-  // Red blinking cursor for 2 seconds
-  const redCursor2 = createCursor('cursor-red')
-  errorDiv.appendChild(redCursor2)
-  await wait(2000)
-  redCursor2.remove()
-
-  // New line and type "rebooting........"
-  errorDiv.appendChild(document.createTextNode('\n'))
-  await typeText(errorDiv, 'rebooting........', 100)
+  // Wait 1 second
   await wait(1000)
 
   if (skipToEnd) return
 
-  // Step 5: Rune takeover (typed)
+  // Step 5: Display Skull ASCII
+  for (const skullLine of skullArt) {
+    const line = document.createElement('div')
+    line.textContent = skullLine
+    line.style.whiteSpace = 'pre'
+    line.className = 'error-text' // Keep it red
+    bootContainer.appendChild(line)
+    bootContainer.scrollTop = bootContainer.scrollHeight
+    await wait(30) // Fast display
+  }
+
+  await wait(1000)
+
+  if (skipToEnd) return
+
+  // Step 6: Rune takeover (typed)
   clearScreen(terminal)
 
   // Create container for runes

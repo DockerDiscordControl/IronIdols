@@ -199,7 +199,7 @@ This is not music. This is survival.`
   const contactTextBefore = `
 
 Contact:
-Maximilian Stelzl · Iron Idols
+Maximilian H. Stelzl · Iron Idols
 `
   contactTextDiv.textContent = contactTextBefore
 
@@ -712,7 +712,7 @@ This is not music. This is survival.`
   const contactTextBefore = `
 
 Contact:
-Maximilian Stelzl · Iron Idols
+Maximilian H. Stelzl · Iron Idols
 `
 
   await typeText(contactTextDiv, contactTextBefore, 30)

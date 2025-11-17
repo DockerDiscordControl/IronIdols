@@ -162,11 +162,12 @@ body {
 
 .contact-section a {
   color: #ffffff;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .contact-section a:hover {
   text-decoration: underline;
+  opacity: 0.8;
 }
 
 /* Iron Idols Logo - Single Image (for initial progressive load) */

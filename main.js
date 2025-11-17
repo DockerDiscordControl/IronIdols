@@ -209,7 +209,17 @@ Maximilian Stelzl · Iron Idols
   emailLink.textContent = 'alive@ironidols.com'
   contactTextDiv.appendChild(emailLink)
 
-  // Add spacing before links
+  // Add line break and Press Release link
+  contactTextDiv.appendChild(document.createTextNode('\n'))
+
+  const pressReleaseLink = document.createElement('a')
+  pressReleaseLink.href = '/Iron_Idols_TESTAMENT_PressRelease.pdf'
+  pressReleaseLink.target = '_blank'
+  pressReleaseLink.rel = 'noopener noreferrer'
+  pressReleaseLink.textContent = 'Press Release'
+  contactTextDiv.appendChild(pressReleaseLink)
+
+  // Add spacing before social links
   contactTextDiv.appendChild(document.createTextNode('\n\n'))
 
   // Create social media links
@@ -713,7 +723,17 @@ Maximilian Stelzl · Iron Idols
   emailLink.textContent = 'alive@ironidols.com'
   contactTextDiv.appendChild(emailLink)
 
-  // Add spacing before links
+  // Add line break and Press Release link
+  contactTextDiv.appendChild(document.createTextNode('\n'))
+
+  const pressReleaseLink = document.createElement('a')
+  pressReleaseLink.href = '/Iron_Idols_TESTAMENT_PressRelease.pdf'
+  pressReleaseLink.target = '_blank'
+  pressReleaseLink.rel = 'noopener noreferrer'
+  pressReleaseLink.textContent = 'Press Release'
+  contactTextDiv.appendChild(pressReleaseLink)
+
+  // Add spacing before social links
   contactTextDiv.appendChild(document.createTextNode('\n\n'))
 
   // Create social media links

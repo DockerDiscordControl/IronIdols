@@ -238,15 +238,6 @@ Maximilian Stelzl · Iron Idols
   youtubeLink.textContent = 'YouTube'
   contactTextDiv.appendChild(youtubeLink)
 
-  contactTextDiv.appendChild(document.createTextNode(' | '))
-
-  const webLink = document.createElement('a')
-  webLink.href = 'https://ironidols.com'
-  webLink.target = '_blank'
-  webLink.rel = 'noopener noreferrer'
-  webLink.textContent = 'Web'
-  contactTextDiv.appendChild(webLink)
-
   // Final blinking cursor
   terminal.appendChild(document.createTextNode('\n\n'))
   const finalCursor = createCursor('cursor-white')
@@ -750,15 +741,6 @@ Maximilian Stelzl · Iron Idols
   youtubeLink.rel = 'noopener noreferrer'
   youtubeLink.textContent = 'YouTube'
   contactTextDiv.appendChild(youtubeLink)
-
-  contactTextDiv.appendChild(document.createTextNode(' | '))
-
-  const webLink = document.createElement('a')
-  webLink.href = 'https://ironidols.com'
-  webLink.target = '_blank'
-  webLink.rel = 'noopener noreferrer'
-  webLink.textContent = 'Web'
-  contactTextDiv.appendChild(webLink)
 
   // Final blinking cursor
   terminal.appendChild(document.createTextNode('\n\n'))

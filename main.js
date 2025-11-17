@@ -717,50 +717,60 @@ Maximilian H. Stelzl · Iron Idols
 
   await typeText(contactTextDiv, contactTextBefore, 30)
 
-  // Add clickable email
+  // Type and add clickable email
   const emailLink = document.createElement('a')
   emailLink.href = 'mailto:alive@ironidols.com'
-  emailLink.textContent = 'alive@ironidols.com'
+  emailLink.style.color = '#ffffff'
+  emailLink.style.textDecoration = 'underline'
   contactTextDiv.appendChild(emailLink)
+  await typeText(emailLink, 'alive@ironidols.com', 30)
 
-  // Add line break and Press Release link
-  contactTextDiv.appendChild(document.createTextNode('\n'))
+  // Add line break and type Press Release link
+  await typeText(contactTextDiv, '\n', 30)
 
   const pressReleaseLink = document.createElement('a')
   pressReleaseLink.href = '/Iron_Idols_TESTAMENT_PressRelease.pdf'
   pressReleaseLink.target = '_blank'
   pressReleaseLink.rel = 'noopener noreferrer'
-  pressReleaseLink.textContent = 'Press Release'
+  pressReleaseLink.style.color = '#ffffff'
+  pressReleaseLink.style.textDecoration = 'underline'
   contactTextDiv.appendChild(pressReleaseLink)
+  await typeText(pressReleaseLink, 'Press Release', 30)
 
   // Add spacing before social links
-  contactTextDiv.appendChild(document.createTextNode('\n\n'))
+  await typeText(contactTextDiv, '\n\n', 30)
 
-  // Create social media links
+  // Type social media links
   const spotifyLink = document.createElement('a')
   spotifyLink.href = 'https://open.spotify.com/intl-de/artist/4VZiUzDKU1sbOPag8TbwZc'
   spotifyLink.target = '_blank'
   spotifyLink.rel = 'noopener noreferrer'
-  spotifyLink.textContent = 'Spotify'
+  spotifyLink.style.color = '#ffffff'
+  spotifyLink.style.textDecoration = 'underline'
   contactTextDiv.appendChild(spotifyLink)
+  await typeText(spotifyLink, 'Spotify', 30)
 
-  contactTextDiv.appendChild(document.createTextNode(' | '))
+  await typeText(contactTextDiv, ' | ', 30)
 
   const instagramLink = document.createElement('a')
   instagramLink.href = 'https://www.instagram.com/iron.idols/'
   instagramLink.target = '_blank'
   instagramLink.rel = 'noopener noreferrer'
-  instagramLink.textContent = 'Instagram'
+  instagramLink.style.color = '#ffffff'
+  instagramLink.style.textDecoration = 'underline'
   contactTextDiv.appendChild(instagramLink)
+  await typeText(instagramLink, 'Instagram', 30)
 
-  contactTextDiv.appendChild(document.createTextNode(' | '))
+  await typeText(contactTextDiv, ' | ', 30)
 
   const youtubeLink = document.createElement('a')
   youtubeLink.href = 'https://www.youtube.com/channel/UC4r7a8AAA9ApFhhAXdt9Pqw'
   youtubeLink.target = '_blank'
   youtubeLink.rel = 'noopener noreferrer'
-  youtubeLink.textContent = 'YouTube'
+  youtubeLink.style.color = '#ffffff'
+  youtubeLink.style.textDecoration = 'underline'
   contactTextDiv.appendChild(youtubeLink)
+  await typeText(youtubeLink, 'YouTube', 30)
 
   // Final blinking cursor
   terminal.appendChild(document.createTextNode('\n\n'))
